@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="apPurchaseView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PurchaseController">
+   <children>
+      <TextField fx:id="tbFirstName" layoutX="281.0" layoutY="150.0" prefHeight="34.0" prefWidth="242.0" />
+      <Label fx:id="lblInsType" layoutX="353.0" layoutY="84.0" text="lbl">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbLastName" layoutX="281.0" layoutY="206.0" prefHeight="34.0" prefWidth="242.0" />
+      <TextField fx:id="tbDate" layoutX="280.0" layoutY="311.0" prefHeight="34.0" prefWidth="242.0" />
+      <TextField fx:id="tbRemarks" layoutX="280.0" layoutY="362.0" prefHeight="34.0" prefWidth="242.0" />
+      <Label layoutX="184.0" layoutY="154.0" text="First Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="210.0" text="Last Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="315.0" text="Date:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="366.0" text="Remarks:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbID" layoutX="280.0" layoutY="258.0" prefHeight="34.0" prefWidth="242.0" />
+      <Label layoutX="184.0" layoutY="262.0" text="ID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btBack" layoutX="141.0" layoutY="434.0" mnemonicParsing="false" onAction="#Back_btnClick" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btSave" layoutX="549.0" layoutY="434.0" mnemonicParsing="false" onAction="#Save_btnClick" text="Save">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
