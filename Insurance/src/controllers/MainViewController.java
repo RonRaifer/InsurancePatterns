@@ -30,7 +30,7 @@ public class MainViewController {
 
     @FXML
     void ApartmentInsurance_btnClick(ActionEvent event) {
-
+    	System.out.print("Apartment CLicked");
     }
 
     @FXML

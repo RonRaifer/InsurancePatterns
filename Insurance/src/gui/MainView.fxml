@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="apMainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="apMainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
       <Button fx:id="btCarIns" layoutX="101.0" layoutY="163.0" mnemonicParsing="false" onAction="#CarInsurance_btnClick" prefHeight="57.0" prefWidth="119.0" text="Car Insurance" />
       <Button fx:id="btApartmentIns" layoutX="725.0" layoutY="163.0" mnemonicParsing="false" onAction="#ApartmentInsurance_btnClick" prefHeight="57.0" prefWidth="119.0" text="Apartment Insurance" />
