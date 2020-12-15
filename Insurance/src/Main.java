@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class Main  extends Application {
 	/**
 	   * Loads the first window of system
-	   *
+	   * a
 	   */ 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
