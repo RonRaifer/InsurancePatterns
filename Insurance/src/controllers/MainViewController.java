@@ -70,7 +70,7 @@ public class MainViewController {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		try {
-			root = loader.load(getClass().getResource("/gui/PurchaseView.fxml").openStream());
+			root = loader.load(getClass().getResource("/view/PurchaseView.fxml").openStream());
 			PurchaseController purchase = loader.getController();	
 			//option.setBack(btnOptions.getScene()); //set back scene
 			Scene scene = new Scene(root);

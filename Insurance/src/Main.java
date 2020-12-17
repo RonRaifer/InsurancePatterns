@@ -14,7 +14,7 @@ public class Main  extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(controllers.MainViewController.class.getResource("/gui/MainView.fxml"));
+			loader.setLocation(controllers.MainViewController.class.getResource("/view/MainView.fxml"));
 			AnchorPane requestsMain = loader.load();
 			Scene scene = new Scene(requestsMain);
 			primaryStage.setTitle("Requests Update Menu");

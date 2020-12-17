@@ -49,7 +49,7 @@ public class PurchaseController {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		try {
-			root = loader.load(getClass().getResource("/gui/MainView.fxml").openStream());			
+			root = loader.load(getClass().getResource("/view/MainView.fxml").openStream());			
 			Scene scene = new Scene(root);	
 			stage.setTitle("Insurance");
 			stage.setScene(scene);	
