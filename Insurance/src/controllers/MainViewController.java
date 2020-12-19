@@ -12,8 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainViewController {
-
-    @FXML
+	
+    
+	/*
+	@FXML
     private AnchorPane apMainView;
 
     @FXML
@@ -83,5 +85,5 @@ public class MainViewController {
 			e.printStackTrace();
 		}
     }
-
+*/
 }

@@ -1,72 +1,58 @@
 package controllers;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 public class PurchaseController {
 
     @FXML
-    private AnchorPane apPurchaseView;
+    private ImageView insImage;
+    
+    @FXML
+    private Label lblInsType;
+
+    @FXML
+    private Button btnSave;
+
+    @FXML
+    private Button btnClear;
 
     @FXML
     private TextField tbFirstName;
 
     @FXML
-    private Label lblInsType;
-
-    @FXML
     private TextField tbLastName;
-
-    @FXML
-    private TextField tbDate;
-
-    @FXML
-    private TextField tbRemarks;
 
     @FXML
     private TextField tbID;
 
     @FXML
-    private Button btBack;
+    private TextField tbDate;
 
     @FXML
-    private Button btSave;
+    private TextArea taRemarks;
 
     @FXML
-    void Back_btnClick(ActionEvent event) {
-    	((Node)event.getSource()).getScene().getWindow().hide(); //hiding primary window
-		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader();
-		AnchorPane root;
-		try {
-			root = loader.load(getClass().getResource("/view/MainView.fxml").openStream());			
-			Scene scene = new Scene(root);	
-			stage.setTitle("Insurance");
-			stage.setScene(scene);	
-			stage.show();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    void Clear_btnClick(ActionEvent event) {
+
     }
+
 
     @FXML
     void Save_btnClick(ActionEvent event) {
 
     }
     
-    void setLabelTypeText(String insType) {
+    void setLabelTypeText(String insType, String img) {
     	this.lblInsType.setText(insType);
+    	this.insImage.setImage(new Image("/view/images/"+img+".png"));
     }
 
 }
