@@ -1,5 +1,16 @@
 package controllers;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import infrastructures.Factories.GenericFactory;
+import infrastructures.Factories.IFactory;
+import infrastructures.Factories.IPolicyFactory;
+import infrastructures.Factories.Policy;
+import infrastructures.Factories.PolicyFactory;
+import infrastructures.Logger.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,20 +50,46 @@ public class PurchaseController {
     @FXML
     private TextArea taRemarks;
 
+    private IPolicyFactory policyFactory = new PolicyFactory();
+    IFactory<Policy> genericFactory = new GenericFactory<Policy>(Policy.class);
+    String policyType="car";
     @FXML
     void Clear_btnClick(ActionEvent event) {
-
+    	tbFirstName.setText("");
+    	tbLastName.setText("");
+    	tbID.setText("");
+    	tbDate.setText("");
+    	taRemarks.setText("");
     }
 
 
     @FXML
     void Save_btnClick(ActionEvent event) {
+    	if(AreFieldsComplete())
+    	{
+    		String firstName = tbFirstName.getText();
+            String lastName = tbLastName.getText();
+            String ID = tbID.getText();
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            Date startDate = new Date(0);  
+            String remarks = taRemarks.getText();
 
+            Policy policy = policyFactory.create(policyType, firstName, lastName, startDate.getTime(), remarks);
+            Logger logger = Logger.getInstance();
+            logger.log("contumer: " + firstName + " " + lastName + ", ID: " + ID + " joined " + policyType + " insurance. starting Date: "+ startDate.getTime());
+    	}
     }
     
     void setLabelTypeText(String insType, String img) {
     	this.lblInsType.setText(insType);
     	this.insImage.setImage(new Image("/view/images/"+img+".png"));
     }
-
+    
+    boolean AreFieldsComplete()
+    {
+    	if(tbFirstName.getText() == "" || tbLastName.getText() =="" || tbID.getText() == "" || tbDate.getText() == "" || taRemarks.getText() == "" )
+    		return false;
+    	return true;
+    }
 }
