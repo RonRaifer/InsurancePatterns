@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import com.jfoenix.controls.JFXButton;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -57,6 +58,8 @@ public class LayoutController implements Initializable {
     		updateView("Life");
     	if(clicked == btnApartmentIns)
     		updateView("Apartment");
+    	if(clicked == btnQuit)
+    		Platform.exit();
     }
     
     @Override

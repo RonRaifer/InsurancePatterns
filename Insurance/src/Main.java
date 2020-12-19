@@ -5,33 +5,39 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main  extends Application {
-	/**
-	   * Loads the first window of system
-	   * a
-	   */ 
+	private double x, y;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		/*try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(controllers.MainViewController.class.getResource("/view/MainView.fxml"));
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/view/Layout.fxml"));
+	        
+	        Scene scene = new Scene(root);
+	        primaryStage.setTitle("Braude Insurance");
+	        primaryStage.setResizable(false);
+	        primaryStage.initStyle(StageStyle.UNDECORATED);
+
+	        //drag it here
+	        root.setOnMousePressed(event -> {
+	            x = event.getSceneX();
+	            y = event.getSceneY();
+	        });
+	        root.setOnMouseDragged(event -> {
+
+	            primaryStage.setX(event.getScreenX() - x);
+	            primaryStage.setY(event.getScreenY() - y);
+
+	        });
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
 			
-			AnchorPane requestsMain = loader.load();
-			Scene scene = new Scene(requestsMain);
-			primaryStage.setTitle("Requests Update Menu");
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.show();
 		} catch (IOException e) {
 	          e.printStackTrace();
-		}*/
-		Parent root = FXMLLoader.load(getClass().getResource("/view/Layout.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		}
+		
 	}
 
 	public static void main(String[] args) {
