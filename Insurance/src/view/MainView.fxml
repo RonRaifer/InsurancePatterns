@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Downloads/Drapo-Dashboard-JavaFX-master/src/drapo/dashboard/images/icons8_500px_64px.png" />
+                  <Image url="@500px_64px.png" />
                </image>
             </ImageView>
             <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
