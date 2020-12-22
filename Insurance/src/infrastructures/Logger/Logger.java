@@ -13,7 +13,7 @@ public class Logger {
 	private Logger() 
 	{
 		try {
-		Log = new File("C:\\Users\\Asaf\\eclipse-workspace\\Insurance\\DPFinalProj\\Log.txt");
+		Log = new File("Log.txt");
 		if(!Log.exists())
 			Log.createNewFile();
 
@@ -39,7 +39,7 @@ public class Logger {
 		{
 			fw = new FileWriter(Log.getAbsoluteFile());
 			bw = new BufferedWriter(fw);
-			bw.write(action);
+			bw.write("\n"+action);
 			bw.close();
 		} catch (IOException e) 
 		{

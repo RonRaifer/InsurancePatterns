@@ -79,7 +79,7 @@ public class LayoutController implements Initializable {
 			loader.setLocation(controllers.PurchaseController.class.getResource("/view/PurchaseView.fxml"));
 			content =  loader.load();
 			PurchaseController purchase = loader.getController();
-			purchase.setLabelTypeText(insType + " Insurance Sell",insType);
+			purchase.setLabelTypeText(insType);
             vbContent.getChildren().add(content);
                 
         	} catch (IOException ex) {
