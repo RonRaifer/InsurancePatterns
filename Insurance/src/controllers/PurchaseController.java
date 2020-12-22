@@ -1,6 +1,8 @@
 package controllers;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import infrastructures.Factories.GenericFactory;
 import infrastructures.Factories.IFactory;
 import infrastructures.Factories.IPolicyFactory;
@@ -68,13 +70,13 @@ public class PurchaseController {
             String lastName = tbLastName.getText();
             String ID = tbID.getText();
             
-            //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             Date startDate = new Date(tbDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
             String remarks = taRemarks.getText();
 
             Policy policy = policyFactory.create(policyType, firstName, lastName, startDate.getTime(), remarks);
             Logger logger = Logger.getInstance();
-            logger.log("customer: " + firstName + " " + lastName + ", ID: " + ID + " joined " + policyType + " insurance. starting Date: "+ startDate.getTime());
+            logger.log("customer: " + firstName + " " + lastName + ", ID: " + ID + " joined " + policyType + " insurance. starting Date: "+ formatter.format(startDate));
             
     	}
     }
