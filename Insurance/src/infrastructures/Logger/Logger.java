@@ -24,7 +24,7 @@ public class Logger {
 		}
 	}
 
-	public static Logger getInstance() 
+	public static Logger GetInstance() 
 	{
 		if (instance == null) 
 		{

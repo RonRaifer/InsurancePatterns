@@ -1,65 +1,48 @@
 package infrastructures.Factories;
 
+import java.sql.Date;
+
 public class Claim {
-	public String id;
-	public String policyId;
-	public String remarks;
-	public String status;
-	public Double amount;
+    public String firstName;
+    public String lastName;
+    public Long startDay;
+    public String remarks;
 	
-	 public String getId()
-	{
-		return id;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setId(String id)
-	{
-		this.id = id;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getPolicyId()
-	{
-		return policyId;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setPolicyId(String policyId)
-	{
-		this.policyId = policyId;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getRemarks()
-	{
-		return remarks;
-	}
+    public Date getStartDay() {
+        return new Date(startDay);
+    }
 
-	public void setRemarks(String remarks)
-	{
-		this.remarks = remarks;
-	}
+    public void setStartDay(Date startDay) {
+        this.startDay = startDay.getTime();
+    }
 
-	public String getStatus()
-	{
-		return status;
-	}
+    public String getRemarks() {
+        return remarks;
+    }
 
-	public void setStatus(String status)
-	{
-		this.status = status;
-	}
-
-	public Double getAmount()
-	{
-		return amount;
-	}
-
-	public void setAmount(Double amount)
-	{
-		this.amount = amount;
-	}
-
-	@Override
-	    public String toString() {
-			return "Status: " + status + " ClaimId: "+ id + " PolicyId: " + policyId;
-	    	
-	    }
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+    
+    @Override
+    public String toString() {
+		return firstName +" " + lastName +" "+ remarks;
+    	
+    }
 }

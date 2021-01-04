@@ -3,7 +3,7 @@ package controllers;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import infrastructures.Factories.GenericFactory;
+import infrastructures.Factories.ClaimFactory;
 import infrastructures.Factories.IFactory;
 import infrastructures.Factories.IPolicyFactory;
 import infrastructures.Factories.Policy;
@@ -50,7 +50,6 @@ public class PurchaseController {
     private TextArea taRemarks;
 
     private IPolicyFactory policyFactory = new PolicyFactory();
-    IFactory<Policy> genericFactory = new GenericFactory<Policy>(Policy.class);
     private String policyType;
     @FXML
     void Clear_btnClick(ActionEvent event) {
@@ -73,10 +72,9 @@ public class PurchaseController {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             Date startDate = new Date(tbDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
             String remarks = taRemarks.getText();
+            
+            policyFactory.create(policyType, firstName, lastName, ID ,startDate.getTime(), remarks);
 
-            Policy policy = policyFactory.create(policyType, firstName, lastName, startDate.getTime(), remarks);
-            Logger logger = Logger.getInstance();
-            logger.log("customer: " + firstName + " " + lastName + ", ID: " + ID + " joined " + policyType + " insurance. starting Date: "+ formatter.format(startDate));
             
     	}
     }
