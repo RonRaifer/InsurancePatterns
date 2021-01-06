@@ -58,6 +58,10 @@ public class LayoutController implements Initializable {
     		updateView("Life");
     	if(clicked == btnApartmentIns)
     		updateView("Apartment");
+    	if(clicked == btnViewPurchases)
+    		loadView("showPurchases");
+    	if(clicked == btnSue)
+    		loadView("sueView");
     	if(clicked == btnQuit)
     		Platform.exit();
     }
@@ -80,6 +84,25 @@ public class LayoutController implements Initializable {
 			content =  loader.load();
 			PurchaseController purchase = loader.getController();
 			purchase.setLabelTypeText(insType);
+            vbContent.getChildren().add(content);
+                
+        	} catch (IOException ex) {
+                Logger.getLogger(LayoutController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+    
+    private void loadView(String fxmlName)
+    {
+    	vbContent.getChildren().clear();
+    	FXMLLoader loader = new FXMLLoader();
+        Node content;
+        
+        try {
+			loader.setLocation(controllers.ViewPurchasesController.class.getResource("/view/"+fxmlName+".fxml"));
+			content =  loader.load();
+			//ViewPurchasesController viewPurchases = loader.getController();
+
             vbContent.getChildren().add(content);
                 
         	} catch (IOException ex) {
