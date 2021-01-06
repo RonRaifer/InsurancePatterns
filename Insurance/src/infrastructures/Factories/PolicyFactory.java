@@ -25,6 +25,7 @@ public class PolicyFactory implements IPolicyFactory{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Logger.GetInstance().log(e.getMessage());
+			return null;
 		}
         Logger.GetInstance().log("customer: " + policy.firstName + " " + policy.lastName + ", ID: " + policy.id + " joined " + type + " insurance. starting Date: ");
         return policy;

@@ -11,7 +11,7 @@ public interface IDao<T> {
 
 	 public void delete(T obj) throws SQLException;
 	 
-	 public T getByID(String id);
+	 public List<T> getByID(String id);
 	 
 	 public List<T> getAll();
 

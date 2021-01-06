@@ -2,6 +2,7 @@ package controllers;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 
 import infrastructures.Factories.ClaimFactory;
 import infrastructures.Factories.IFactory;
@@ -11,13 +12,18 @@ import infrastructures.Factories.PolicyFactory;
 import infrastructures.Logger.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 
 
 public class PurchaseController {
@@ -73,11 +79,66 @@ public class PurchaseController {
             Date startDate = new Date(tbDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
             String remarks = taRemarks.getText();
             
-            policyFactory.create(policyType, firstName, lastName, ID ,startDate.getTime(), remarks);
+            Policy obj = policyFactory.create(policyType, firstName, lastName, ID ,startDate.getTime(), remarks);
+            if(obj!=null)
+            {
+            	//POP UP MESSAGE OF SUCCESFUL ADDITION HERE	
+            	PUP("Successfully added!", "Confirmation");
+            }
+            else 
+            {
+            	//POP UP MESSAGE OF FAILURE ADDITION HERE
+            	PUP("Failure adding new Insurance member.\n for more details see log file", "Error");
+            }
 
             
     	}
     }
+    
+    
+	static public void PUP(String str, String title)
+	{
+		if(title.equals("Error"))
+		{
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.initModality(Modality.APPLICATION_MODAL);
+			alert.initStyle(StageStyle.DECORATED);
+			ButtonType btn = new ButtonType("ok", ButtonData.CANCEL_CLOSE);
+			alert.getButtonTypes().clear();
+			alert.setHeaderText(title);
+			alert.setContentText(str);
+			alert.setTitle("OBL");
+			alert.getButtonTypes().addAll(btn);
+			Optional<ButtonType> result = alert.showAndWait();
+		}
+		if(title.equals("Information"))
+		{
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.initModality(Modality.APPLICATION_MODAL);
+			alert.initStyle(StageStyle.DECORATED);
+			ButtonType btn = new ButtonType("ok", ButtonData.CANCEL_CLOSE);
+			alert.getButtonTypes().clear();
+			alert.setHeaderText(title);
+			alert.setContentText(str);
+			alert.setTitle("OBL");
+			alert.getButtonTypes().addAll(btn);
+			Optional<ButtonType> result = alert.showAndWait();
+		}
+		if(title.equals("Confirmation"))
+		{
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.initModality(Modality.APPLICATION_MODAL);
+			alert.initStyle(StageStyle.DECORATED);
+			ButtonType btn = new ButtonType("ok", ButtonData.CANCEL_CLOSE);
+			alert.getButtonTypes().clear();
+			alert.setHeaderText(title);
+			alert.setContentText(str);
+			alert.setTitle("OBL");
+			alert.getButtonTypes().addAll(btn);
+			Optional<ButtonType> result = alert.showAndWait();
+		}
+	}
+    
     
     void setLabelTypeText(String insType) {
     	this.policyType = insType;

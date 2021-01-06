@@ -1,7 +1,9 @@
 package infrastructures.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sqlite.SQLiteDataSource;
@@ -57,31 +59,111 @@ public class PolicyDao implements IDao<Policy>{
 	     preparedStatement.setString(5, obj.remarks);
 	     preparedStatement.setString(6, obj.type);
 	     preparedStatement.executeUpdate();
+	     
 	}
 	
 
 	@Override
 	public void update(Policy obj) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
+	
+	//UNCHECKED METHOD, NEED PROPER SCREEN FOR IT
 	@Override
-	public void delete(Policy obj) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void delete(Policy obj) throws SQLException {		
+		String getAllPolicies = "DELETE FROM Policies WHERE id = ? AND firstName = ? AND lastName = ? AND remarks = ? AND insType = ?";
+		try 
+	    {
+			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllPolicies);
+			preparedStatement.setString(1, (String)obj.id);
+			preparedStatement.setString(2, (String)obj.firstName);
+			preparedStatement.setString(3, (String)obj.lastName);
+			preparedStatement.setString(4, (String)obj.remarks);
+			preparedStatement.setString(5, (String)obj.type);
+			preparedStatement.executeUpdate();
+		} 
+	    catch (SQLException e) 
+	    {
+			e.printStackTrace();
+			Logger.GetInstance().log("Unable to delete the Following Policy:\n"
+					+ "First name: "+ obj.firstName+"\n"
+					+ "Last name: "+obj.lastName+"\n"
+					+ "ID: "+obj.id+"\n"
+					+ "Insurance type: "+obj.type+"\n"
+					+ "Remarks: "+obj.remarks+"\n");
+		}
+
+		Logger.GetInstance().log("Successfully deleted the Following Policy:\n"
+				+ "First name: "+ obj.firstName+"\n"
+				+ "Last name: "+obj.lastName+"\n"
+				+ "ID: "+obj.id+"\n"
+				+ "Insurance type: "+obj.type+"\n"
+				+ "Remarks: "+obj.remarks+"\n");
+
 	}
 
 	@Override
-	public Policy getByID(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Policy> getByID(String id) 
+	{
+		String getAllPolicies = "SELECT * FROM Policies WHERE id = ?";
+		List<Policy> pl = new ArrayList<Policy>();
+	    try 
+	    {
+			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllPolicies);
+			preparedStatement.setString(1, (String)id);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				Policy p = new Policy();
+				p.id = rs.getString(1);	
+				p.firstName = rs.getString(2);
+				p.lastName = rs.getString(3);
+				p.startDay = rs.getLong(4);
+				p.remarks = rs.getString(5);
+				p.type = rs.getString(6);
+				pl.add(p);
+			}
+		} 
+	    catch (SQLException e) 
+	    {
+			e.printStackTrace();
+		}
+	     
+	    if(pl.isEmpty())
+	    	return null;
+	    else return pl;
 	}
 
 	@Override
-	public List<Policy> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Policy> getAll() 
+	{
+		String getAllPolicies = "SELECT * FROM Policies";
+		List<Policy> pl = new ArrayList<Policy>();
+	    try 
+	    {
+			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllPolicies);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				Policy p = new Policy();
+				p.id = rs.getString(1);	
+				p.firstName = rs.getString(2);
+				p.lastName = rs.getString(3);
+				p.startDay = rs.getLong(4);
+				p.remarks = rs.getString(5);
+				p.type = rs.getString(6);
+				pl.add(p);
+			}
+		} 
+	    catch (SQLException e) 
+	    {
+			e.printStackTrace();
+		}
+	     
+	    if(pl.isEmpty())
+	    	return null;
+	    else return pl;
 	}
 
 

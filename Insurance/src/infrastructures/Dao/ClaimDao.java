@@ -57,7 +57,7 @@ public class ClaimDao implements IDao<Claim> {
 	}
 
 	@Override
-	public Claim getByID(String id) {
+	public List<Claim> getByID(String id) {
 
 		return null;
 	}
