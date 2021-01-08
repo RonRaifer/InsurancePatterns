@@ -20,7 +20,7 @@ public class PolicyDao implements IDao<Policy>{
 	//Default private constructor
 	private PolicyDao()
 	{
-		String tblCreateQuery = "create table IF NOT EXISTS Policies(id char(256) not null, "
+		String tblCreateQuery = "create table IF NOT EXISTS Policies(pID INTEGER PRIMARY KEY AUTOINCREMENT, id char(256) not null, "
 				+ "firstName char(256) not null, "
 				+ "lastName char(256) not null, "
 				+ "sDate date not null, "
@@ -116,12 +116,13 @@ public class PolicyDao implements IDao<Policy>{
 			while(rs.next())
 			{
 				Policy p = new Policy();
-				p.id = rs.getString(1);	
-				p.firstName = rs.getString(2);
-				p.lastName = rs.getString(3);
-				p.startDay = rs.getLong(4);
-				p.remarks = rs.getString(5);
-				p.type = rs.getString(6);
+				p.pID = rs.getString(1);
+				p.id = rs.getString(2);	
+				p.firstName = rs.getString(3);
+				p.lastName = rs.getString(4);
+				p.startDay = rs.getLong(5);
+				p.remarks = rs.getString(6);
+				p.type = rs.getString(7);
 				pl.add(p);
 			}
 		} 
@@ -147,12 +148,13 @@ public class PolicyDao implements IDao<Policy>{
 			while(rs.next())
 			{
 				Policy p = new Policy();
-				p.id = rs.getString(1);	
-				p.firstName = rs.getString(2);
-				p.lastName = rs.getString(3);
-				p.startDay = rs.getLong(4);
-				p.remarks = rs.getString(5);
-				p.type = rs.getString(6);
+				p.pID = rs.getString(1);
+				p.id = rs.getString(2);	
+				p.firstName = rs.getString(3);
+				p.lastName = rs.getString(4);
+				p.startDay = rs.getLong(5);
+				p.remarks = rs.getString(6);
+				p.type = rs.getString(7);
 				pl.add(p);
 			}
 		} 

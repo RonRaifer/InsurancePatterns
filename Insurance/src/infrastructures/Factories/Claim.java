@@ -3,6 +3,7 @@ package infrastructures.Factories;
 import java.sql.Date;
 
 public class Claim {
+	public String cID;
     public String firstName;
     public String lastName;
     public Long startDay;

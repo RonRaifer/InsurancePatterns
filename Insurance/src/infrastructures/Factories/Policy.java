@@ -3,13 +3,18 @@ package infrastructures.Factories;
 import java.sql.Date;
 
 public class Policy {
-	  public String id;
+		public String pID;
+		public String id;
 	    public String firstName;
 	    public String lastName;
 	    public Long startDay;
 	    public String type;
 	    public String remarks;
-
+	    
+	    public String getpID() {
+	        return pID;
+	    }
+	    
 	    public String getId() {
 	        return id;
 	    }

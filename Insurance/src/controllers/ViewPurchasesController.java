@@ -2,7 +2,6 @@ package controllers;
 
 import java.net.URL;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import infrastructures.Dao.PolicyDao;

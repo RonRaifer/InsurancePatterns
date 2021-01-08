@@ -1,6 +1,7 @@
 package infrastructures.Dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,15 +15,21 @@ public class ClaimDao implements IDao<Claim> {
 	//SINGLETON
 	static ClaimDao _instance=null;
 	
-	
-	//DB CONNECTION
-	protected Connection _conn;
-	protected Logger _logger;
-	private SQLiteDataSource ds = null;
-	
 	private ClaimDao()
 	{
-		//ESTABLISH DATABASE CONNECTION HERE
+		String tblCreateQuery = "create table IF NOT EXISTS Claims(cID INTEGER PRIMARY KEY AUTOINCREMENT, pID INTEGER not null, "
+				+ "firstName char(256) not null, "
+				+ "lastName char(256) not null, "
+				+ "sDate date not null, "
+				+ "remarks char(256) not null, "
+				+ "insType char(256) not null, "
+				+ "amount char(256) not null)";
+		try {
+            PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(tblCreateQuery);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            Logger.GetInstance().log(e.getMessage());
+        }
 	}
 	
 	public static ClaimDao GetInstance()
