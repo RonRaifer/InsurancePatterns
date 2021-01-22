@@ -70,15 +70,11 @@ public class PolicyDao implements IDao<Policy>{
 	//UNCHECKED METHOD, NEED PROPER SCREEN FOR IT
 	@Override
 	public void delete(Policy obj) throws SQLException {		
-		String getAllPolicies = "DELETE FROM Policies WHERE id = ? AND firstName = ? AND lastName = ? AND remarks = ? AND insType = ?";
+		String getAllPolicies = "DELETE FROM Policies WHERE pID = ?";
 		try 
 	    {
 			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllPolicies);
-			preparedStatement.setString(1, (String)obj.id);
-			preparedStatement.setString(2, (String)obj.firstName);
-			preparedStatement.setString(3, (String)obj.lastName);
-			preparedStatement.setString(4, (String)obj.remarks);
-			preparedStatement.setString(5, (String)obj.type);
+			preparedStatement.setString(1, obj.pID);
 			preparedStatement.executeUpdate();
 		} 
 	    catch (SQLException e) 
@@ -87,15 +83,15 @@ public class PolicyDao implements IDao<Policy>{
 			Logger.GetInstance().log("Unable to delete the Following Policy:\n"
 					+ "First name: "+ obj.firstName+"\n"
 					+ "Last name: "+obj.lastName+"\n"
-					+ "ID: "+obj.id+"\n"
+					+ "ID: "+obj.pID+"\n"
 					+ "Insurance type: "+obj.type+"\n"
 					+ "Remarks: "+obj.remarks+"\n");
 		}
 
 		Logger.GetInstance().log("Successfully deleted the Following Policy:\n"
+				+ "Policy ID: "+obj.pID+"\n"
 				+ "First name: "+ obj.firstName+"\n"
 				+ "Last name: "+obj.lastName+"\n"
-				+ "ID: "+obj.id+"\n"
 				+ "Insurance type: "+obj.type+"\n"
 				+ "Remarks: "+obj.remarks+"\n");
 

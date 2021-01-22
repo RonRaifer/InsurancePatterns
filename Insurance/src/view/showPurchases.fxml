@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="346.0" prefWidth="947.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewPurchasesController">
    <children>
       <Pane layoutX="29.0" layoutY="22.0" prefHeight="301.0" prefWidth="896.0" style="-fx-background-color: #fff;">
-         <children>
             <Separator layoutX="41.0" layoutY="43.0" prefHeight="0.0" prefWidth="796.0" />
             <Label layoutX="41.0" layoutY="16.0" text="Purchases:" textFill="#3a1c9d">
                <font>
@@ -27,22 +31,75 @@
                      <children>
                         <TableView fx:id="tblPurchases" layoutX="14.0" layoutY="14.0" prefHeight="271.0" prefWidth="789.0">
                           <columns>
-                            <TableColumn fx:id="idCol" editable="false" prefWidth="84.0" text="ID" />
-                            <TableColumn fx:id="nameCol" editable="false" prefWidth="90.0" text="First Name" />
+                            <TableColumn fx:id="idCol" editable="false" prefWidth="73.0" text="ID" />
+                            <TableColumn fx:id="nameCol" editable="false" prefWidth="101.0" text="First Name" />
                               <TableColumn fx:id="lastCol" editable="false" prefWidth="97.0" text="Last Name" />
-                              <TableColumn fx:id="typeCol" editable="false" prefWidth="103.0" text="Type" />
-                              <TableColumn fx:id="dateCol" editable="false" prefWidth="112.0" text="Date" />
-                              <TableColumn fx:id="remarksCol" editable="false" prefWidth="302.0" text="Remarks" />
+                              <TableColumn fx:id="typeCol" editable="false" prefWidth="86.0" text="Type" />
+                              <TableColumn fx:id="dateCol" editable="false" prefWidth="129.0" text="Date" />
+                              <TableColumn fx:id="remarksCol" editable="false" prefWidth="167.0" text="Remarks" />
+                              <TableColumn fx:id="optionsCol" prefWidth="135.0" text="Oprions" />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-         </children>
+           
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
          </effect>
+         </Pane>
+      <Pane fx:id="pUpdate" layoutX="145.0" layoutY="38.0" prefHeight="238.0" prefWidth="607.0" style="-fx-background-color: #f1f1f1;">
+         <effect>
+            <DropShadow color="#ababab" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+         <children>
+            <JFXButton fx:id="btnUpdate" layoutX="504.0" layoutY="199.0" onAction="#Update_btnClick" ripplerFill="#9ce0f0" style="-fx-background-color: #b3ff80;" text="Update">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnCancel" layoutX="44.0" layoutY="199.0" onAction="#Cancel_btnClick" ripplerFill="#ff6868" style="-fx-background-color: #e4c3c3;" text="Cancel" />
+            <Label layoutX="45.0" layoutY="108.0" text="Date:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="58.0" text="Policy ID:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="83.0" text="Full Name:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="285.0" layoutY="58.0" text="Insurance Type:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="285.0" layoutY="88.0" text="Remarks:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="taRemarks" layoutX="345.0" layoutY="89.0" prefHeight="78.0" prefWidth="221.0" />
+            <Label fx:id="lblPolicyID" layoutX="108.0" layoutY="59.0" text="Label" />
+            <Label fx:id="lblInsType" layoutX="388.0" layoutY="59.0" text="Label" />
+            <Separator layoutX="40.0" layoutY="180.0" prefHeight="3.0" prefWidth="530.0" />
+            <Label fx:id="lblFullName" layoutX="117.0" layoutY="84.0" text="Label" />
+            <DatePicker fx:id="dpDate" layoutX="83.0" layoutY="106.0" />
+            <Label layoutX="16.0" layoutY="14.0" text="Update Policy:" textFill="#150a3c">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnDelete" layoutX="430.0" layoutY="199.0" onAction="#Delete_btnClick" style="-fx-background-color: #ff3b3b;" text="Delete">
+               
+            </JFXButton>
+         </children>
       </Pane>
    </children>
 </AnchorPane>

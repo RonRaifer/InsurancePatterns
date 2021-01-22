@@ -144,7 +144,12 @@ public class PurchaseController {
     	this.lblInsType.setText(insType + " Insurance Sell");
     	this.insImage.setImage(new Image("/view/images/"+insType+".png"));
     }
-    
+    void updatePolicy(Policy pol) {
+    	this.lblInsType.setText(pol.type + " Update");
+    	this.insImage.setImage(new Image("/view/images/"+pol.type+".png"));
+    	
+    	
+    }
     boolean AreFieldsComplete()
     {
     	if(tbFirstName.getText() == "" || tbLastName.getText() =="" || tbID.getText() == "" || tbDate.getValue() == null || taRemarks.getText() == "" )

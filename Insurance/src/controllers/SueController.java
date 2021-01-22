@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -137,13 +138,11 @@ public class SueController implements Initializable {
         String status = cmbStatus.getValue();
         String remarks = taRemarks.getText();
         
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date(0);
-        Long sDate = date.getTime();
+        Calendar cal = Calendar.getInstance();
+        long milliseconds = cal.getTimeInMillis();
         String pID = policy.pID;
-       //dateFormat.format(date)
         
-        Claim obj = claimFactory.create(null, pID, amount, status, sDate, remarks);
+        Claim obj = claimFactory.create(null, pID, amount, status, milliseconds, remarks);
         if(obj!=null)
         {
         	//POP UP MESSAGE OF SUCCESFUL ADDITION HERE	

@@ -1,2 +1,7 @@
 
-[SQLITE_ERROR] SQL error or missing database (no such table: Claims)
+Successfully deleted the Following Policy:
+Policy ID: 1
+First name: asd
+Last name: asd
+Insurance type: Life
+Remarks: asd

@@ -14,14 +14,13 @@ public class ClaimDao implements IDao<Claim> {
 	private ClaimDao()
 	{
 		String tblCreateQuery = "create table IF NOT EXISTS Claims(cID INTEGER PRIMARY KEY AUTOINCREMENT, pID char(256) not null, "
-				+ "amount char(256) not null"
+				+ "amount char(256) not null,"
 				+ "dateSued date not null, "
 				+ "remarks char(256) not null, "
 				+ "status char(256) not null)";
 		try {
 			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(tblCreateQuery);
-            preparedStatement.executeUpdate();
-            
+            preparedStatement.executeUpdate();          
         } catch (SQLException e) {
             Logger.GetInstance().log(e.getMessage());
         }

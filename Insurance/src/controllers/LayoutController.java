@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import com.jfoenix.controls.JFXButton;
 
+import infrastructures.Factories.Policy;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
