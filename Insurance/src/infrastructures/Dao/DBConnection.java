@@ -38,7 +38,6 @@ public class DBConnection {
 			e.printStackTrace();
 	        System.exit(0);
 	    }
-		System.out.println("DB created");
 		try 
 		{
 			_conn = ds.getConnection();
