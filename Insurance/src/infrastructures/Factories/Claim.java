@@ -4,46 +4,47 @@ import java.sql.Date;
 
 public class Claim {
 	public String cID;
-    public String firstName;
-    public String lastName;
-    public Long startDay;
+	public String pID;
+    public String amount;
+    public Long dateSued;
     public String remarks;
-	
-    public String getFirstName() {
-        return firstName;
+	public String status;
+    
+    public String getcID() {
+		return cID;
+	}
+	public void setcID(String cID) {
+		this.cID = cID;
+	}
+	public String getpID() {
+		return pID;
+	}
+	public void setId(String pID) {
+		this.pID = pID;
+	}
+	public String getAmount() {
+		return amount;
+	}
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+	public Date getDateSued() {
+        return new Date(dateSued);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void getDateSued(Date dateSued) {
+        this.dateSued = dateSued.getTime();
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getStartDay() {
-        return new Date(startDay);
-    }
-
-    public void setStartDay(Date startDay) {
-        this.startDay = startDay.getTime();
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
     
     @Override
     public String toString() {
-		return firstName +" " + lastName +" "+ remarks;
+		return "Sue ID: "+ cID +" Policy: " + pID +" Sue Amount: "+ amount;
     	
     }
 }

@@ -60,7 +60,7 @@
                   <DropShadow color="#ababab" height="50.0" radius="24.5" width="50.0" />
                </effect>
                <children>
-                  <JFXButton fx:id="btnSue" layoutX="504.0" layoutY="199.0" ripplerFill="#9ce0f0" style="-fx-background-color: #b3ff80;" text="Save Sue">
+                  <JFXButton fx:id="btnSue" layoutX="504.0" layoutY="199.0" onAction="#Save_btnClick" ripplerFill="#9ce0f0" style="-fx-background-color: #b3ff80;" text="Save Sue">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

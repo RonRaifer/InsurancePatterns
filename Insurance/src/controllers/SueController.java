@@ -2,6 +2,8 @@ package controllers;
 
 import java.net.URL;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -9,7 +11,12 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 
 import infrastructures.Dao.PolicyDao;
+import infrastructures.Factories.Claim;
+import infrastructures.Factories.ClaimFactory;
+import infrastructures.Factories.IClaimFactory;
+import infrastructures.Factories.IPolicyFactory;
 import infrastructures.Factories.Policy;
+import infrastructures.Factories.PolicyFactory;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -88,12 +95,14 @@ public class SueController implements Initializable {
 
     @FXML
     private Label lblInsType;
-
     
     @FXML
     private Label lblError;
     
     ObservableList<Policy> list = FXCollections.observableArrayList();
+    
+    private IClaimFactory claimFactory = new ClaimFactory();
+    private Policy policy;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,6 +129,31 @@ public class SueController implements Initializable {
     	pAddSue.setVisible(false);
     	tbAmount.clear();
     	taRemarks.clear();
+    }
+    
+    @FXML
+    void Save_btnClick(ActionEvent event) {
+    	String amount = tbAmount.getText();
+        String status = cmbStatus.getValue();
+        String remarks = taRemarks.getText();
+        
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date(0);
+        Long sDate = date.getTime();
+        String pID = policy.pID;
+       //dateFormat.format(date)
+        
+        Claim obj = claimFactory.create(null, pID, amount, status, sDate, remarks);
+        if(obj!=null)
+        {
+        	//POP UP MESSAGE OF SUCCESFUL ADDITION HERE	
+        	PurchaseController.PUP("Successfully added!", "Confirmation");
+        }
+        else 
+        {
+        	//POP UP MESSAGE OF FAILURE ADDITION HERE
+        	PurchaseController.PUP("Failure adding new SUE.\n for more details see log file", "Error");
+        }
     }
     
     private void updateSearchResults(String id) {
@@ -174,7 +208,7 @@ public class SueController implements Initializable {
     	List<String> status = new ArrayList<String>();
     	status.add("Approved");
     	status.add("Not Approved");
-
+    	this.policy = pol;
         ObservableList<String> obList = FXCollections.observableList(status);	
     	cmbStatus.setItems(obList);
     	lblCustomerID.setText(pol.id);

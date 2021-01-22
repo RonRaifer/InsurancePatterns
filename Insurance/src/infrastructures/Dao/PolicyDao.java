@@ -49,7 +49,6 @@ public class PolicyDao implements IDao<Policy>{
 	@Override
 	public void insert(Policy obj) throws SQLException 
 	{
-		//TODO: check ID duplicate exception type to catch and show message
 		 String insertSQL = "INSERT INTO Policies (id, firstName, lastName, sDate, remarks, insType) VALUES (?, ?, ?, ?, ?, ?)";
 	     PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(insertSQL);
 	     preparedStatement.setString(1, obj.id);
@@ -58,8 +57,7 @@ public class PolicyDao implements IDao<Policy>{
 	     preparedStatement.setDate(4, obj.getStartDay());
 	     preparedStatement.setString(5, obj.remarks);
 	     preparedStatement.setString(6, obj.type);
-	     preparedStatement.executeUpdate();
-	     
+	     preparedStatement.executeUpdate(); 
 	}
 	
 

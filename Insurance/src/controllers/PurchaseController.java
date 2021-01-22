@@ -75,7 +75,6 @@ public class PurchaseController {
             String lastName = tbLastName.getText();
             String ID = tbID.getText();
             
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             Date startDate = new Date(tbDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
             String remarks = taRemarks.getText();
             

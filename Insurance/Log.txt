@@ -1,2 +1,2 @@
 
-customer: asd asd, ID: 123 joined Life insurance. starting Date: 
+[SQLITE_ERROR] SQL error or missing database (no such table: Claims)
