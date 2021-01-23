@@ -1,4 +1,6 @@
 import java.io.IOException;
+
+import infrastructures.Logger.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +21,6 @@ public class Main  extends Application {
 	        primaryStage.setResizable(false);
 	        primaryStage.initStyle(StageStyle.UNDECORATED);
 
-	        //drag it here
 	        root.setOnMousePressed(event -> {
 	            x = event.getSceneX();
 	            y = event.getSceneY();
@@ -34,9 +35,8 @@ public class Main  extends Application {
 	        primaryStage.show();
 			
 		} catch (IOException e) {
-	          e.printStackTrace();
+			Logger.GetInstance().log(e.getMessage());
 		}
-		
 	}
 
 	public static void main(String[] args) {

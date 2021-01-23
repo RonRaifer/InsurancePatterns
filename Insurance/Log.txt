@@ -1,8 +1,44 @@
 
-[2021-01-23 at 13:36:20 IST]: Successfully deleted the Following Policy:
-Policy ID: 10
-First name: asdfas
-Last name: fasdf
-Insurance type: Car
-Remarks: sadfsdf
+[2021-01-23 at 14:36:08 IST]: customer: adas asdasd, ID: 4433 joined Apartment insurance. starting Date: 
+[2021-01-23 at 14:36:15 IST]: customer: adas asdasd, ID: 4413 joined Apartment insurance. starting Date: 
+[2021-01-23 at 14:36:21 IST]: Successfully deleted the Following Policy:
+Policy ID: 4
+First name: sdasd
+Last name: asdasd
+Insurance type: Life
+Remarks: asdasfffffffffffff
 
+[2021-01-23 at 14:36:25 IST]: Successfully deleted the Following Policy:
+Policy ID: 6
+First name: asdasd
+Last name: asda
+Insurance type: Car
+Remarks: asdasdasdasdasdsa
+
+[2021-01-23 at 15:13:16 IST]: Successfully deleted the Following Policy:
+Policy ID: 5
+First name: asdas
+Last name: dasdad
+Insurance type: Car
+Remarks: asdas
+
+[2021-01-23 at 15:13:25 IST]: Successfully deleted the Following Policy:
+Policy ID: 7
+First name: asdas
+Last name: dsa
+Insurance type: Car
+Remarks: asdasdadasasdasd
+
+[2021-01-23 at 15:16:07 IST]: customer: asdas dasdas, ID: 12312333 joined Car insurance. starting Date: 
+[2021-01-23 at 15:16:09 IST]: customer: asdas dasdas, ID: 12312333 joined Car insurance. starting Date: 
+[2021-01-23 at 15:19:06 IST]: Successfully deleted the Following Policy:
+Policy ID: 23
+First name: adas
+Last name: asdasd
+Insurance type: Apartment
+Remarks: saf
+
+[2021-01-23 at 15:23:23 IST]: customer: asdas dasd, ID: 99 joined Car insurance. starting Date: 
+[2021-01-23 at 15:28:07 IST]: customer: asdas dasdasd, ID: 33333 joined Car insurance. starting Date: 
+[2021-01-23 at 15:32:56 IST]: customer: asdas asdas, ID: 5555 joined Health insurance. starting Date: 
+[2021-01-23 at 15:39:05 IST]: Customer: asfsdaf fffdsa, ID: 80 Joined Life insurance. Starting Date: 2021-01-14

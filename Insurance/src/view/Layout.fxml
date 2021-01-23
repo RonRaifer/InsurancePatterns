@@ -9,7 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,9 +22,9 @@
                   <Font name="System Bold" size="54.0" />
                </font>
             </Label>
-            <Label layoutX="227.0" layoutY="100.0" text="Ver. ??" textFill="WHITE">
+            <Label fx:id="lblVersion" layoutX="223.0" layoutY="95.0" text="Ver. ??" textFill="WHITE">
                <font>
-                  <Font size="13.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
             <JFXButton fx:id="btnQuit" layoutX="1041.0" layoutY="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="163.0" ripplerFill="WHITE" style="-fx-background-color: #473E98;" text="Quit Program" textFill="WHITE">
@@ -174,18 +173,14 @@
             <VBox fx:id="vbContent" prefHeight="404.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
          </content>
       </ScrollPane>
-      <HBox layoutX="251.0" layoutY="145.0" prefHeight="30.0" prefWidth="810.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="1.0">
-         <children>
-            <Label fx:id="lblBread" prefHeight="30.0" prefWidth="207.0" text="Breads" textFill="#171717">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
-         </children>
-      </HBox>
+      <Label fx:id="lblPick" layoutX="417.0" layoutY="327.0" prefHeight="12.0" prefWidth="545.0" text="Welcome! Pick an option from the menu" textFill="#171717">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </Label>
    </children>
    <effect>
       <DropShadow />

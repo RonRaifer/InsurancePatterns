@@ -8,8 +8,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import infrastructures.Dao.ClaimDao;
 import infrastructures.Dao.PolicyDao;
-import infrastructures.Factories.Claim;
-import infrastructures.Factories.Policy;
 import infrastructures.Logger.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -22,6 +20,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import models.Claim;
+import models.Policy;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -111,8 +111,7 @@ public class ViewPurchasesController implements Initializable{
     		@Override
 		    protected void updateItem(Policy pol, boolean empty) {
 		        super.updateItem(pol, empty);
-		        setGraphic(empty ? null : pane);
-		        
+		        setGraphic(empty ? null : pane);    
 		    }
 		});
     	list = FXCollections.observableArrayList(PolicyDao.GetInstance().getAll());
@@ -142,7 +141,6 @@ public class ViewPurchasesController implements Initializable{
         	pUpdate.setVisible(false);
         	setAllPurchasesTable();
     	}
-    	
     }
     
     @FXML

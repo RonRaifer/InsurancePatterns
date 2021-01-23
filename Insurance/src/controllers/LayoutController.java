@@ -4,13 +4,12 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.jfoenix.controls.JFXButton;
-
-import infrastructures.Factories.Policy;
+import infrastructures.JsonReader.JsonReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,15 +40,19 @@ public class LayoutController implements Initializable {
 
 	@FXML
 	private JFXButton btnViewPurchases;
+	
     @FXML
     private VBox vbContent;
-
+    
     @FXML
-    private Label lblBread;
-
+    private Label lblVersion;
+    
+    @FXML
+    private Label lblPick;
     
     @FXML
 	private void handleButtonAction(MouseEvent event) {
+    	lblPick.setVisible(false);
     	Object clicked = event.getSource();
     	if(clicked == btnCarIns)
     		updateView("Car");
@@ -69,9 +72,8 @@ public class LayoutController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-         //refreshNodes();
+    	List<String> arr = JsonReader.getInstance().readFile(System.getProperty("user.dir")+"/input.json");
+    	lblVersion.setText("Version: "+arr.get(0) +"\nDeveloped by: "+arr.get(1)+" and " +arr.get(2));
     }    
     
     private void updateView(String insType)
@@ -85,8 +87,7 @@ public class LayoutController implements Initializable {
 			content =  loader.load();
 			PurchaseController purchase = loader.getController();
 			purchase.setLabelTypeText(insType);
-            vbContent.getChildren().add(content);
-                
+            vbContent.getChildren().add(content);      
         	} catch (IOException ex) {
                 Logger.getLogger(LayoutController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -102,10 +103,7 @@ public class LayoutController implements Initializable {
         try {
 			loader.setLocation(controllers.ViewPurchasesController.class.getResource("/view/"+fxmlName+".fxml"));
 			content =  loader.load();
-			//ViewPurchasesController viewPurchases = loader.getController();
-
-            vbContent.getChildren().add(content);
-                
+            vbContent.getChildren().add(content);     
         	} catch (IOException ex) {
                 Logger.getLogger(LayoutController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import infrastructures.Dao.PolicyDao;
 import infrastructures.Logger.Logger;
-import java.sql.Date;
+import models.Policy;
 
 public class PolicyFactory implements IPolicyFactory{
 
@@ -27,7 +27,7 @@ public class PolicyFactory implements IPolicyFactory{
 			Logger.GetInstance().log(e.getMessage());
 			return null;
 		}
-        Logger.GetInstance().log("customer: " + policy.firstName + " " + policy.lastName + ", ID: " + policy.id + " joined " + type + " insurance. starting Date: ");
+        Logger.GetInstance().log("Customer: " + policy.firstName + " " + policy.lastName + ", ID: " + policy.id + " Joined " + type + " insurance. Starting Date: "+ policy.getStartDay());
         return policy;
 	}
 

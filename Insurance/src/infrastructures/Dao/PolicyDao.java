@@ -5,8 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import infrastructures.Factories.Policy;
+
 import infrastructures.Logger.Logger;
+import models.Policy;
 
 public class PolicyDao implements IDao<Policy>{
 

@@ -1,15 +1,8 @@
 package controllers;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Optional;
-
-import infrastructures.Factories.ClaimFactory;
-import infrastructures.Factories.IFactory;
 import infrastructures.Factories.IPolicyFactory;
-import infrastructures.Factories.Policy;
 import infrastructures.Factories.PolicyFactory;
-import infrastructures.Logger.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -24,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
+import models.Policy;
 
 
 public class PurchaseController {
@@ -60,11 +54,7 @@ public class PurchaseController {
     
     @FXML
     void Clear_btnClick(ActionEvent event) {
-    	tbFirstName.setText("");
-    	tbLastName.setText("");
-    	tbID.setText("");
-    	tbDate.setValue(null);
-    	taRemarks.setText("");
+    	clearFields();
     }
 
     @FXML
@@ -73,20 +63,20 @@ public class PurchaseController {
     	{
     		String firstName = tbFirstName.getText();
             String lastName = tbLastName.getText();
-            String ID = tbID.getText();
-            
+            String ID = tbID.getText(); 
             Date startDate = new Date(tbDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
             String remarks = taRemarks.getText();
-            
+
             Policy obj = policyFactory.create(policyType, firstName, lastName, ID ,startDate.getTime(), remarks);
-            if(obj!=null)
-            {
+            
+            if(obj != null)
             	PUP("Successfully added!", "Confirmation");
-            }
             else 
-            {
-            	PUP("Failure adding new Insurance member.\n for more details see log file", "Error");
-            } 
+            	PUP("Failure adding new Policy.\n for more details see log file", "Error"); 
+            clearFields();
+    	}
+    	else {
+    		PUP("Fields must not be empty!", "Information");
     	}
     }
       
@@ -103,7 +93,7 @@ public class PurchaseController {
 			alert.setContentText(str);
 			alert.setTitle("OBL");
 			alert.getButtonTypes().addAll(btn);
-			Optional<ButtonType> result = alert.showAndWait();
+			alert.showAndWait();
 		}
 		if(title.equals("Information"))
 		{
@@ -116,7 +106,7 @@ public class PurchaseController {
 			alert.setContentText(str);
 			alert.setTitle("OBL");
 			alert.getButtonTypes().addAll(btn);
-			Optional<ButtonType> result = alert.showAndWait();
+			alert.showAndWait();
 		}
 		if(title.equals("Confirmation"))
 		{
@@ -129,7 +119,7 @@ public class PurchaseController {
 			alert.setContentText(str);
 			alert.setTitle("OBL");
 			alert.getButtonTypes().addAll(btn);
-			Optional<ButtonType> result = alert.showAndWait();
+			alert.showAndWait();
 		}
 	} 
 	
@@ -137,6 +127,14 @@ public class PurchaseController {
     	this.policyType = insType;
     	this.lblInsType.setText(insType + " Insurance Sell");
     	this.insImage.setImage(new Image("/view/images/"+insType+".png"));
+    }
+    
+    void clearFields() {
+    	tbFirstName.setText("");
+    	tbLastName.setText("");
+    	tbID.setText("");
+    	tbDate.setValue(null);
+    	taRemarks.setText("");
     }
     
     boolean AreFieldsComplete()

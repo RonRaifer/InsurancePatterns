@@ -2,8 +2,6 @@ package controllers;
 
 import java.net.URL;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -12,12 +10,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 
 import infrastructures.Dao.PolicyDao;
-import infrastructures.Factories.Claim;
 import infrastructures.Factories.ClaimFactory;
 import infrastructures.Factories.IClaimFactory;
-import infrastructures.Factories.IPolicyFactory;
-import infrastructures.Factories.Policy;
-import infrastructures.Factories.PolicyFactory;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -37,6 +31,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import models.Claim;
+import models.Policy;
 
 public class SueController implements Initializable {
 
@@ -155,7 +151,7 @@ public class SueController implements Initializable {
             }
     	}
     	else {
-    		PurchaseController.PUP("Fields must not be empty!\n for more details see log file", "Error");
+    		PurchaseController.PUP("Fields must not be empty!", "Information");
     	}
     }
     

@@ -1,10 +1,9 @@
 package infrastructures.Factories;
 
 import java.sql.SQLException;
-
 import infrastructures.Dao.ClaimDao;
-import infrastructures.Dao.PolicyDao;
 import infrastructures.Logger.Logger;
+import models.Claim;
 
 public class ClaimFactory implements IClaimFactory{
 	@Override
@@ -26,7 +25,7 @@ public class ClaimFactory implements IClaimFactory{
 			Logger.GetInstance().log(e.getMessage());
 			return null;
 		}
-        Logger.GetInstance().log("Sue ID: " + claim.cID + " For policy ID: " + claim.pID + " claimed: "+ claim.remarks);
+        Logger.GetInstance().log("Sue ID: " + claim.cID + " For policy ID: " + claim.pID + " Claimed: "+ claim.remarks);
 		
         return claim;
     }
