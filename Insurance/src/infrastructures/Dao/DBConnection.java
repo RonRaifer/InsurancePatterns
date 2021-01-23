@@ -24,14 +24,12 @@ public class DBConnection {
 		return _conn;
 	}
 	
-
-	
 	private void createConnection() 
 	{
 		try 
 		{
 			ds = new SQLiteDataSource();
-	        ds.setUrl("jdbc:sqlite:db/test.db");
+	        ds.setUrl("jdbc:sqlite:db/insuranceDB.db");
 		} 
 		catch ( Exception e ) 
 		{

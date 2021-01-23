@@ -13,176 +13,180 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="623.0" prefWidth="1271.0" style="-fx-background-color: #fff;" styleClass=".head-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LayoutController">
+<AnchorPane fx:id="apLayout" prefHeight="641.0" prefWidth="1291.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LayoutController">
    <children>
-      <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" styleClass="head-background" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="10.0" layoutY="9.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="623.0" prefWidth="1271.0" style="-fx-background-color: #fff;">
          <children>
-            <Label layoutX="217.0" layoutY="33.0" text="BSure" textFill="WHITE">
+            <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1271.0" styleClass="head-background" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="217.0" layoutY="33.0" text="BSure" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="54.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblVersion" layoutX="223.0" layoutY="93.0" text="Ver. ??" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="btnQuit" layoutX="1041.0" layoutY="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="163.0" ripplerFill="WHITE" style="-fx-background-color: #473E98;" text="Quit Program" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <VBox layoutX="1.0" layoutY="145.0" prefHeight="477.0" prefWidth="250.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="146.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="252.0" text="SELLS" textFill="#171717">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin>
+                  </Label>
+                  <JFXButton fx:id="btnCarIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Car Insurance" textFill="#5b5858">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/car.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="btnHealthIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Health Insurance" textFill="#5b5858">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/health.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="btnLifeIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Life Insurance" textFill="#5b5858">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/life.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="btnApartmentIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Apartment Insurance" textFill="#5b5858">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/apartment.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <Label prefHeight="30.0" prefWidth="252.0" text="OPTIONS" textFill="#171717">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Label>
+                  <JFXButton fx:id="btnSue" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="SUE" textFill="#5b5858">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/sue.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton fx:id="btnViewPurchases" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="View Purchases" textFill="#5b5858">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/viewpurchases.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="122.0" fitWidth="119.0" layoutX="11.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bsurelogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+               </effect>
+            </Pane>
+            <ScrollPane layoutX="251.0" layoutY="182.0" prefHeight="430.0" prefWidth="1019.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="182.0">
+               <content>
+                  <VBox fx:id="vbContent" prefHeight="404.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
+               </content>
+            </ScrollPane>
+            <Label fx:id="lblPick" layoutX="417.0" layoutY="327.0" prefHeight="12.0" prefWidth="545.0" text="Welcome! Pick an option from the menu" textFill="#171717">
                <font>
-                  <Font name="System Bold" size="54.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblVersion" layoutX="223.0" layoutY="95.0" text="Ver. ??" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btnQuit" layoutX="1041.0" layoutY="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#handleButtonAction" prefHeight="30.0" prefWidth="163.0" ripplerFill="WHITE" style="-fx-background-color: #473E98;" text="Quit Program" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </Pane>
-      <VBox layoutX="-1.0" layoutY="145.0" prefHeight="438.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="146.0">
-         <children>
-            <Label prefHeight="30.0" prefWidth="252.0" text="SELLS" textFill="#171717">
-               <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="26.0" />
                </font>
                <padding>
                   <Insets left="40.0" />
                </padding>
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
             </Label>
-            <JFXButton fx:id="btnCarIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Car Insurance" textFill="#5b5858">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/car.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="btnHealthIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Health Insurance" textFill="#5b5858">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/health.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="btnLifeIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Life Insurance" textFill="#5b5858">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/life.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="btnApartmentIns" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Apartment Insurance" textFill="#5b5858">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/apartment.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-            <Label prefHeight="30.0" prefWidth="252.0" text="OPTIONS" textFill="#171717">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
-            <JFXButton fx:id="btnSue" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="SUE" textFill="#5b5858">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView accessibleText="Project List" fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/sue.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-            <JFXButton fx:id="btnViewPurchases" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#handleButtonAction" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="View Purchases" textFill="#5b5858">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/viewpurchases.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </JFXButton>
-         </children>
-      </VBox>
-      <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff;">
-         <children>
-            <ImageView fitHeight="122.0" fitWidth="119.0" layoutX="11.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/bsurelogo.png" />
-               </image>
-            </ImageView>
          </children>
          <effect>
-            <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+            <DropShadow height="32.86" radius="16.6725" spread="0.17" width="35.83" />
          </effect>
-      </Pane>
-      <ScrollPane layoutX="251.0" layoutY="182.0" prefHeight="406.0" prefWidth="810.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="182.0">
-         <content>
-            <VBox fx:id="vbContent" prefHeight="404.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;" />
-         </content>
-      </ScrollPane>
-      <Label fx:id="lblPick" layoutX="417.0" layoutY="327.0" prefHeight="12.0" prefWidth="545.0" text="Welcome! Pick an option from the menu" textFill="#171717">
-         <font>
-            <Font name="System Bold" size="26.0" />
-         </font>
-         <padding>
-            <Insets left="40.0" />
-         </padding>
-      </Label>
+      </AnchorPane>
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>

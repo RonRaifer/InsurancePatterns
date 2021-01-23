@@ -42,3 +42,11 @@ Remarks: saf
 [2021-01-23 at 15:28:07 IST]: customer: asdas dasdasd, ID: 33333 joined Car insurance. starting Date: 
 [2021-01-23 at 15:32:56 IST]: customer: asdas asdas, ID: 5555 joined Health insurance. starting Date: 
 [2021-01-23 at 15:39:05 IST]: Customer: asfsdaf fffdsa, ID: 80 Joined Life insurance. Starting Date: 2021-01-14
+[2021-01-23 at 16:16:29 IST]: Sue ID: null For policy ID: 12 Claimed: dasdada
+[2021-01-23 at 16:22:00 IST]: Customer: asda asda, ID: 123 Joined Life insurance. Starting Date: 2021-01-20
+[2021-01-23 at 16:22:17 IST]: Successfully deleted the Following Policy:
+Policy ID: 1
+First name: asda
+Last name: asda
+Insurance type: Life
+Remarks: asd

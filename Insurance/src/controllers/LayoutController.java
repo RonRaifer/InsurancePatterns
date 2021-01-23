@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.fxml.Initializable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -16,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class LayoutController implements Initializable {
@@ -49,6 +49,9 @@ public class LayoutController implements Initializable {
     
     @FXML
     private Label lblPick;
+    
+    @FXML
+    private AnchorPane apLayout;
     
     @FXML
 	private void handleButtonAction(MouseEvent event) {

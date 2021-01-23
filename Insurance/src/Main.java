@@ -17,10 +17,11 @@ public class Main  extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/Layout.fxml"));
 	        
 	        Scene scene = new Scene(root);
+	        
 	        primaryStage.setTitle("Braude Insurance");
 	        primaryStage.setResizable(false);
 	        primaryStage.initStyle(StageStyle.UNDECORATED);
-
+	       
 	        root.setOnMousePressed(event -> {
 	            x = event.getSceneX();
 	            y = event.getSceneY();

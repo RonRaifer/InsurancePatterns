@@ -87,6 +87,8 @@ public class ViewPurchasesController implements Initializable{
     	setAllPurchasesTable();
     }
     public void setAllPurchasesTable() {
+    	List<Policy> pList = PolicyDao.GetInstance().getAll();
+    	if(pList == null) return;
     	idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
     	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     	lastCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -114,7 +116,7 @@ public class ViewPurchasesController implements Initializable{
 		        setGraphic(empty ? null : pane);    
 		    }
 		});
-    	list = FXCollections.observableArrayList(PolicyDao.GetInstance().getAll());
+    	list = FXCollections.observableArrayList(pList);
     	tblPurchases.setItems(list);
     }
     
