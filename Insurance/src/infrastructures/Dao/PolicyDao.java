@@ -1,14 +1,10 @@
 package infrastructures.Dao;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.sqlite.SQLiteDataSource;
-
-import infrastructures.Factories.IFactory;
 import infrastructures.Factories.Policy;
 import infrastructures.Logger.Logger;
 
@@ -63,23 +59,28 @@ public class PolicyDao implements IDao<Policy>{
 
 	@Override
 	public void update(Policy obj) throws SQLException {
-		
+		String updateSQL = "UPDATE Policies SET sDate=?, remarks=? WHERE pID=?";
+		PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(updateSQL);
+	    preparedStatement.setDate(1, obj.getStartDay());
+	    preparedStatement.setString(2, obj.remarks);
+	    preparedStatement.setString(3, obj.pID);
+	    preparedStatement.executeUpdate(); 
 	}
 
 	
 	//UNCHECKED METHOD, NEED PROPER SCREEN FOR IT
 	@Override
 	public void delete(Policy obj) throws SQLException {		
-		String getAllPolicies = "DELETE FROM Policies WHERE pID = ?";
+		String deletePolicy = "DELETE FROM Policies WHERE pID = ?";
 		try 
 	    {
-			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllPolicies);
+			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(deletePolicy);
 			preparedStatement.setString(1, obj.pID);
 			preparedStatement.executeUpdate();
 		} 
 	    catch (SQLException e) 
 	    {
-			e.printStackTrace();
+	    	Logger.GetInstance().log(e.getMessage());
 			Logger.GetInstance().log("Unable to delete the Following Policy:\n"
 					+ "First name: "+ obj.firstName+"\n"
 					+ "Last name: "+obj.lastName+"\n"
@@ -122,7 +123,7 @@ public class PolicyDao implements IDao<Policy>{
 		} 
 	    catch (SQLException e) 
 	    {
-			e.printStackTrace();
+	    	Logger.GetInstance().log(e.getMessage());
 		}
 	     
 	    if(pl.isEmpty())
@@ -154,7 +155,7 @@ public class PolicyDao implements IDao<Policy>{
 		} 
 	    catch (SQLException e) 
 	    {
-			e.printStackTrace();
+	    	Logger.GetInstance().log(e.getMessage());
 		}
 	     
 	    if(pl.isEmpty())

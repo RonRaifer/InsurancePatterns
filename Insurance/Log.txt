@@ -1,7 +1,8 @@
 
-Successfully deleted the Following Policy:
-Policy ID: 1
-First name: asd
-Last name: asd
-Insurance type: Life
-Remarks: asd
+[2021-01-23 at 13:36:20 IST]: Successfully deleted the Following Policy:
+Policy ID: 10
+First name: asdfas
+Last name: fasdf
+Insurance type: Car
+Remarks: sadfsdf
+

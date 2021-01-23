@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Logger {
 	private static Logger instance = null;
@@ -16,7 +18,6 @@ public class Logger {
 		Log = new File("Log.txt");
 		if(!Log.exists())
 			Log.createNewFile();
-
 		}
 		catch(IOException e)
 		{
@@ -35,11 +36,14 @@ public class Logger {
 
 	public void log(String action) 
 	{
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
 		try 
 		{
 			fw = new FileWriter(Log.getAbsoluteFile());
 			bw = new BufferedWriter(fw);
-			bw.write("\n"+action);
+			bw.write("\n"+"["+formatter.format(date)+"]: "+action);
+			bw.newLine();
 			bw.close();
 		} catch (IOException e) 
 		{

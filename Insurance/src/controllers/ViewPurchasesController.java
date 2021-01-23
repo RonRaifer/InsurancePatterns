@@ -1,26 +1,22 @@
 package controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.jfoenix.controls.JFXButton;
-
+import infrastructures.Dao.ClaimDao;
 import infrastructures.Dao.PolicyDao;
+import infrastructures.Factories.Claim;
 import infrastructures.Factories.Policy;
-import javafx.application.Platform;
+import infrastructures.Logger.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -84,6 +80,7 @@ public class ViewPurchasesController implements Initializable{
 
     ObservableList<Policy> list = FXCollections.observableArrayList();
     Policy policy = new Policy();
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	pUpdate.setVisible(false);
@@ -103,9 +100,7 @@ public class ViewPurchasesController implements Initializable{
 		    private final Hyperlink hlUpdate = new Hyperlink("Update/Delete");
     		@FXML
     		private final HBox pane = new HBox(hlUpdate);
-
     		{
-    			
     			hlUpdate.setOnAction(
 			            event -> {
 			            	Policy p = getTableView().getItems().get(getIndex());
@@ -131,17 +126,42 @@ public class ViewPurchasesController implements Initializable{
 
     @FXML
     void Update_btnClick(ActionEvent event) {
-
+    	if(AreFieldsComplete()) {
+    		Date startDate = new Date(dpDate.getValue().toEpochDay() * 24 * 60 * 60 * 1000); 
+            
+            policy.remarks = taRemarks.getText();
+            policy.startDay = startDate.getTime();
+        	try {
+    			PolicyDao.GetInstance().update(policy);	//delete policy
+    		} catch (SQLException e) {
+    			PurchaseController.PUP("Failure updating policy.\n for more details see log file", "Error");
+    			Logger.GetInstance().log(e.getMessage());
+    			pUpdate.setVisible(false);
+    		}
+        	PurchaseController.PUP("Successfully updated!", "Confirmation");
+        	pUpdate.setVisible(false);
+        	setAllPurchasesTable();
+    	}
+    	
     }
     
     @FXML
     void Delete_btnClick(ActionEvent event) {
     	try {
-			PolicyDao.GetInstance().delete(policy);
+    		List<Claim> claims = ClaimDao.GetInstance().getByID(policy.pID); //get all claims with this policy id
+    		if(claims != null)
+	    		for (Claim c : claims) {
+	    			ClaimDao.GetInstance().delete(c);	//delete claim for this policy id
+	    		}
+			PolicyDao.GetInstance().delete(policy);	//delete policy
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			PurchaseController.PUP("Failure deleting policy.\n for more details see log file", "Error");
+			Logger.GetInstance().log(e.getMessage());
+			pUpdate.setVisible(false);
 		}
+    	PurchaseController.PUP("Successfully deleted!", "Confirmation");
+    	pUpdate.setVisible(false);
+    	setAllPurchasesTable();
     }
     
     private void initUpdateWindow(Policy p) {
@@ -152,6 +172,13 @@ public class ViewPurchasesController implements Initializable{
         lblFullName.setText(p.firstName +" "+p.lastName);
         dpDate.setValue(p.getStartDay().toLocalDate());
         pUpdate.setVisible(true);
+    }
+    
+    boolean AreFieldsComplete()
+    {
+    	if(dpDate.getValue() == null || taRemarks.getText() == "" )
+    		return false;
+    	return true;
     }
 
 }

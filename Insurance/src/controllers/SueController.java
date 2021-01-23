@@ -134,25 +134,29 @@ public class SueController implements Initializable {
     
     @FXML
     void Save_btnClick(ActionEvent event) {
-    	String amount = tbAmount.getText();
-        String status = cmbStatus.getValue();
-        String remarks = taRemarks.getText();
-        
-        Calendar cal = Calendar.getInstance();
-        long milliseconds = cal.getTimeInMillis();
-        String pID = policy.pID;
-        
-        Claim obj = claimFactory.create(null, pID, amount, status, milliseconds, remarks);
-        if(obj!=null)
-        {
-        	//POP UP MESSAGE OF SUCCESFUL ADDITION HERE	
-        	PurchaseController.PUP("Successfully added!", "Confirmation");
-        }
-        else 
-        {
-        	//POP UP MESSAGE OF FAILURE ADDITION HERE
-        	PurchaseController.PUP("Failure adding new SUE.\n for more details see log file", "Error");
-        }
+    	if(AreFieldsComplete()) {
+    		String amount = tbAmount.getText();
+            String status = cmbStatus.getValue();
+            String remarks = taRemarks.getText();
+            
+            Calendar cal = Calendar.getInstance();
+            long milliseconds = cal.getTimeInMillis();
+            String pID = policy.pID;
+            
+            Claim obj = claimFactory.create(null, pID, amount, status, milliseconds, remarks);
+            if(obj!=null)
+            {
+            	PurchaseController.PUP("Successfully added!", "Confirmation");
+            	pAddSue.setVisible(false);
+            }
+            else 
+            {
+            	PurchaseController.PUP("Failure adding new SUE.\n for more details see log file", "Error");
+            }
+    	}
+    	else {
+    		PurchaseController.PUP("Fields must not be empty!\n for more details see log file", "Error");
+    	}
     }
     
     private void updateSearchResults(String id) {
@@ -161,7 +165,6 @@ public class SueController implements Initializable {
     		lblError.setText("No such ID");
     	}
     	else {
-    		//idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         	lastCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         	typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
@@ -199,8 +202,6 @@ public class SueController implements Initializable {
         	tblSearchResults.setItems(list);
         	spSearchResults.setVisible(true);
     	}
-    	
-    	
     }
     
     private void initSueWindow(Policy pol) {
@@ -214,6 +215,13 @@ public class SueController implements Initializable {
     	lblFullName.setText(pol.firstName+" "+pol.lastName);
     	lblInsType.setText(pol.type);
     	pAddSue.setVisible(true);
+    }
+
+    boolean AreFieldsComplete()
+    {
+    	if(tbAmount.getText() == "" || cmbStatus.getValue() == null || taRemarks.getText() == "")
+    		return false;
+    	return true;
     }
 
 }

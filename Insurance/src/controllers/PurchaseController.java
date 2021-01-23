@@ -57,6 +57,7 @@ public class PurchaseController {
 
     private IPolicyFactory policyFactory = new PolicyFactory();
     private String policyType;
+    
     @FXML
     void Clear_btnClick(ActionEvent event) {
     	tbFirstName.setText("");
@@ -65,7 +66,6 @@ public class PurchaseController {
     	tbDate.setValue(null);
     	taRemarks.setText("");
     }
-
 
     @FXML
     void Save_btnClick(ActionEvent event) {
@@ -81,20 +81,15 @@ public class PurchaseController {
             Policy obj = policyFactory.create(policyType, firstName, lastName, ID ,startDate.getTime(), remarks);
             if(obj!=null)
             {
-            	//POP UP MESSAGE OF SUCCESFUL ADDITION HERE	
             	PUP("Successfully added!", "Confirmation");
             }
             else 
             {
-            	//POP UP MESSAGE OF FAILURE ADDITION HERE
             	PUP("Failure adding new Insurance member.\n for more details see log file", "Error");
-            }
-
-            
+            } 
     	}
     }
-    
-    
+      
 	static public void PUP(String str, String title)
 	{
 		if(title.equals("Error"))
@@ -136,20 +131,14 @@ public class PurchaseController {
 			alert.getButtonTypes().addAll(btn);
 			Optional<ButtonType> result = alert.showAndWait();
 		}
-	}
-    
-    
+	} 
+	
     void setLabelTypeText(String insType) {
     	this.policyType = insType;
     	this.lblInsType.setText(insType + " Insurance Sell");
     	this.insImage.setImage(new Image("/view/images/"+insType+".png"));
     }
-    void updatePolicy(Policy pol) {
-    	this.lblInsType.setText(pol.type + " Update");
-    	this.insImage.setImage(new Image("/view/images/"+pol.type+".png"));
-    	
-    	
-    }
+    
     boolean AreFieldsComplete()
     {
     	if(tbFirstName.getText() == "" || tbLastName.getText() =="" || tbID.getText() == "" || tbDate.getValue() == null || taRemarks.getText() == "" )
