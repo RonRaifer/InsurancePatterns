@@ -50,3 +50,5 @@ First name: asda
 Last name: asda
 Insurance type: Life
 Remarks: asd
+
+[2021-01-24 at 20:50:01 IST]: Customer: asdas dasda, ID: 123 Joined Health insurance. Starting Date: 2021-01-09
