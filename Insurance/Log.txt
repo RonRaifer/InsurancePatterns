@@ -52,3 +52,51 @@ Insurance type: Life
 Remarks: asd
 
 [2021-01-24 at 20:50:01 IST]: Customer: asdas dasda, ID: 123 Joined Health insurance. Starting Date: 2021-01-09
+[2021-01-27 at 12:31:44 IST]: Customer: Asaf Ben Shabat, ID: 12366544 Joined Car insurance. Starting Date: 2021-01-14
+[2021-01-27 at 12:33:06 IST]: Successfully deleted the Following Policy:
+Policy ID: 3
+First name: Asaf
+Last name: Ben Shabat
+Insurance type: Car
+Remarks: adasdasd
+
+[2021-01-27 at 12:33:53 IST]: Customer: asdasd asdasd, ID: 123 Joined Health insurance. Starting Date: 2021-01-20
+[2021-01-27 at 12:34:14 IST]: Customer: asdasd asdasd, ID: 123 Joined Health insurance. Starting Date: 2021-01-20
+[2021-01-27 at 12:36:49 IST]: Sue ID: null For policy ID: 4 Claimed: dasdas
+[2021-01-27 at 14:29:51 IST]: Customer: asda asdasd, ID: 11 Joined Car insurance. Starting Date: 2021-01-14
+[2021-01-27 at 14:38:32 IST]: Sue ID: null For policy ID: 4 Claimed: dasdsa
+[2021-01-27 at 14:53:06 IST]: Sue ID: null For policy ID: 5 Claimed: 
+[2021-01-27 at 15:41:20 IST]: Successfully deleted the Following Claim:
+Claim ID: 3
+Policy ID: 5
+Amount: 122
+Remarks: dddddddd
+
+[2021-01-27 at 15:41:39 IST]: Successfully deleted the Following Claim:
+Claim ID: 2
+Policy ID: 4
+Amount: asda
+Remarks: dasdsa
+
+[2021-01-27 at 15:44:23 IST]: Sue ID: null For policy ID: 4 Claimed: 123
+[2021-01-27 at 15:44:47 IST]: Successfully deleted the Following Claim:
+Claim ID: 1
+Policy ID: 4
+Amount: 444
+Remarks: dasdas
+
+[2021-01-27 at 15:45:17 IST]: Successfully deleted the Following Claim:
+Claim ID: 4
+Policy ID: 4
+Amount: 33
+Remarks: 123
+
+[2021-01-27 at 15:45:27 IST]: Sue ID: null For policy ID: 4 Claimed: 123
+[2021-01-27 at 15:52:25 IST]: Successfully deleted the Following Claim:
+Claim ID: 5
+Policy ID: 4
+Amount: 33
+Remarks: asfasfsafasfdsadfsad
+
+[2021-01-27 at 15:52:39 IST]: Sue ID: null For policy ID: 2 Claimed: aasdas
+[2021-01-27 at 15:53:10 IST]: Sue ID: null For policy ID: 6 Claimed: dghgfh

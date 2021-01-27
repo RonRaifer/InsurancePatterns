@@ -8,6 +8,7 @@ import java.util.List;
 
 import infrastructures.Logger.Logger;
 import models.Claim;
+import models.Policy;
 
 public class ClaimDao implements IDao<Claim> {
 	
@@ -122,7 +123,37 @@ public class ClaimDao implements IDao<Claim> {
 	    	return null;
 	    else return cl;
 	}
-
+	
+	public List<Claim> getByIDaddType(Policy p) {
+		String getAllClaims = "SELECT * FROM Claims WHERE pID = ?";
+		List<Claim> cl = new ArrayList<Claim>();
+	    try 
+	    {
+			PreparedStatement preparedStatement = DBConnection.GetDBConnection().prepareStatement(getAllClaims);
+			preparedStatement.setString(1, p.pID);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				Claim c = new Claim();
+				c.cID = rs.getString(1);
+				c.pID = rs.getString(2);
+				c.amount = rs.getString(3);	
+				c.dateSued = rs.getLong(4);
+				c.remarks = rs.getString(5);
+				c.status = rs.getString(6);
+				c.type = p.type;
+				cl.add(c);
+			}
+		} 
+	    catch (SQLException e) 
+	    {
+			e.printStackTrace();
+		}
+	     
+	    if(cl.isEmpty())
+	    	return null;
+	    else return cl;
+	}
 	@Override
 	public List<Claim> getAll() {
 		String getAllClaims = "SELECT * FROM Claims";

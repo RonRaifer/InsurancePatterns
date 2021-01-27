@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import infrastructures.Dao.ClaimDao;
 import infrastructures.Dao.PolicyDao;
 import infrastructures.Factories.ClaimFactory;
 import infrastructures.Factories.IClaimFactory;
+import infrastructures.Logger.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -21,7 +24,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableCell;
@@ -67,11 +69,32 @@ public class SueController implements Initializable {
     private TableColumn<Policy, Policy> sueCol;
     
     @FXML
+    private TableView<Claim> tblClaims;
+
+    @FXML
+    private TableColumn<Claim, String> policyIDCol;
+
+    @FXML
+    private TableColumn<Claim, String> claimTypeCol;
+
+    @FXML
+    private TableColumn<Claim, String> claimRemarksCol;
+
+    @FXML
+    private TableColumn<Claim, String> amountCol;
+
+    @FXML
+    private TableColumn<Claim, String> statusCol;
+
+    @FXML
+    private TableColumn<Claim, Claim> optionsCol;
+    @FXML
     private Pane pAddSue;
 
     @FXML
     private JFXButton btnSue;
-
+    @FXML
+    private JFXButton btnDelete;
     @FXML
     private JFXButton btnCancel;
 
@@ -97,10 +120,11 @@ public class SueController implements Initializable {
     private Label lblError;
     
     ObservableList<Policy> list = FXCollections.observableArrayList();
-    
+    ObservableList<Claim> cList = FXCollections.observableArrayList();
     private IClaimFactory claimFactory = new ClaimFactory();
     private Policy policy;
-    
+    private Claim claim = new Claim();
+    String idToSearch;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	spSearchResults.setVisible(false);
@@ -109,7 +133,7 @@ public class SueController implements Initializable {
     
     @FXML
     void Search_btnClick(ActionEvent event) {
-    	String idToSearch = tbId.getText();
+    	idToSearch = tbId.getText();
     	lblError.setText("");
     	spSearchResults.setVisible(false);
     	if(idToSearch == "") {
@@ -134,33 +158,69 @@ public class SueController implements Initializable {
     		String amount = tbAmount.getText();
             String status = cmbStatus.getValue();
             String remarks = taRemarks.getText();
-            
-            Calendar cal = Calendar.getInstance();
-            long milliseconds = cal.getTimeInMillis();
-            String pID = policy.pID;
-            
-            Claim obj = claimFactory.create(null, pID, amount, status, milliseconds, remarks);
-            if(obj!=null)
-            {
-            	PurchaseController.PUP("Successfully added!", "Confirmation");
+            if(btnSue.getText().equals("Update")) {
+            	claim.amount = amount;
+            	claim.status = status;
+            	claim.remarks = remarks;
+            	try {
+					ClaimDao.GetInstance().update(claim);
+				} catch (SQLException e) {
+					PurchaseController.PUP("Failure updating claim.\n for more details see log file", "Error");
+					pAddSue.setVisible(false);
+					Logger.GetInstance().log(e.getMessage());
+				}
             	pAddSue.setVisible(false);
+            	PurchaseController.PUP("Successfully updated!", "Confirmation");
             }
-            else 
-            {
-            	PurchaseController.PUP("Failure adding new SUE.\n for more details see log file", "Error");
-            }
+            else {
+            	 Calendar cal = Calendar.getInstance();
+                 long milliseconds = cal.getTimeInMillis();
+                 String pID = policy.pID;
+                 
+                 Claim obj = claimFactory.create(null, pID, amount, status, milliseconds, remarks);
+                 if(obj!=null)
+                 {
+                 	PurchaseController.PUP("Successfully added!", "Confirmation");
+                 	pAddSue.setVisible(false);
+                 }
+                 else 
+                 {
+                 	PurchaseController.PUP("Failure adding new SUE.\n for more details see log file", "Error");
+                 }
+         	}
     	}
     	else {
-    		PurchaseController.PUP("Fields must not be empty!", "Information");
-    	}
+     		PurchaseController.PUP("Fields must not be empty!", "Information");
+     	}
+    	updateSearchResults(idToSearch);
     }
-    
+    @FXML
+    void Delete_btnClick(ActionEvent event) {
+    	try {
+	    	ClaimDao.GetInstance().delete(claim);	//delete claim for this policy id
+		} catch (SQLException e) {
+			PurchaseController.PUP("Failure deleting claim.\n for more details see log file", "Error");
+			Logger.GetInstance().log(e.getMessage());
+			pAddSue.setVisible(false);
+		}
+    	PurchaseController.PUP("Successfully deleted!", "Confirmation");
+    	updateSearchResults(idToSearch);
+    	pAddSue.setVisible(false);
+    }
     private void updateSearchResults(String id) {
     	List<Policy> pl = PolicyDao.GetInstance().getByID(id);
+    	List<Claim> cl = new ArrayList<Claim>();
+    	
     	if(pl == null) {
     		lblError.setText("No such ID");
     	}
     	else {
+    		for(Policy poli : pl) {
+    			List<Claim> cTemp = ClaimDao.GetInstance().getByIDaddType(poli);
+    			if(cTemp != null)
+    				cl.addAll(cTemp);
+    		}
+    		updateSueResults(cl, pl.get(0));
         	nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         	lastCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         	typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
@@ -170,8 +230,7 @@ public class SueController implements Initializable {
         	sueCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         	sueCol.setCellFactory(param -> new TableCell<Policy, Policy>() { 
 				@FXML
-			    private final Hyperlink hlSue = new Hyperlink("Add Sue");
-
+			    private final Button hlSue = new Button("Add Sue");
 			    protected void updateItem(Policy pol, boolean empty) {
 			        super.updateItem(pol, empty);
 
@@ -200,6 +259,49 @@ public class SueController implements Initializable {
     	}
     }
     
+    private void updateSueResults(List<Claim> cl, Policy pl) {
+    	if(cl == null) {
+    		return;
+    	}
+    	else {
+        	policyIDCol.setCellValueFactory(new PropertyValueFactory<>("pID"));
+        	amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        	statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        	claimRemarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+        	claimTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        	
+        	optionsCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        	optionsCol.setCellFactory(param -> new TableCell<Claim, Claim>() { 
+				@FXML
+			    private final Button hlUpdate = new Button("Update/Delete");
+
+			    protected void updateItem(Claim cla, boolean empty) {
+			        super.updateItem(cla, empty);
+
+			        if (cla == null) {
+			            setGraphic(null);
+			            return;
+			        }
+
+			        setGraphic(hlUpdate);
+			        hlUpdate.setOnAction(
+			            event -> {
+			            	Platform.runLater(new Runnable() {
+			            	    @Override
+			            	    public void run() {
+			            	    	initUpdateWindow(cla, pl);
+			            	    }
+			            	});
+			            }
+			        );
+			    }
+			});
+        	
+        	cList = FXCollections.observableArrayList(cl);
+        	tblClaims.setItems(cList);
+    	}
+    }
+    
     private void initSueWindow(Policy pol) {
     	List<String> status = new ArrayList<String>();
     	status.add("Approved");
@@ -210,9 +312,31 @@ public class SueController implements Initializable {
     	lblCustomerID.setText(pol.id);
     	lblFullName.setText(pol.firstName+" "+pol.lastName);
     	lblInsType.setText(pol.type);
+    	tbAmount.clear();
+    	taRemarks.clear();
+    	btnSue.setText("Save Sue");
+    	btnDelete.setVisible(false);
     	pAddSue.setVisible(true);
     }
-
+    
+    private void initUpdateWindow(Claim cla, Policy pol) {
+    	List<String> status = new ArrayList<String>();
+    	status.add("Approved");
+    	status.add("Not Approved");
+        ObservableList<String> obList = FXCollections.observableList(status);
+        cmbStatus.setPromptText(cla.status);
+    	cmbStatus.setItems(obList);
+    	lblCustomerID.setText(pol.id);
+    	lblFullName.setText(pol.firstName+" "+pol.lastName);
+    	lblInsType.setText(pol.type);
+    	btnSue.setText("Update");
+    	tbAmount.setText(cla.amount);
+    	taRemarks.setText(cla.remarks);
+    	this.claim = cla;
+    	btnDelete.setVisible(true);
+    	pAddSue.setVisible(true);
+    }
+    
     boolean AreFieldsComplete()
     {
     	if(tbAmount.getText() == "" || cmbStatus.getValue() == null || taRemarks.getText() == "")

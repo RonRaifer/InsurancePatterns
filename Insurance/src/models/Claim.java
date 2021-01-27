@@ -5,23 +5,35 @@ import java.sql.Date;
 public class Claim {
 	public String cID;
 	public String pID;
-    public String amount;
+	public String amount;
     public Long dateSued;
     public String remarks;
 	public String status;
+    public String type;
     
-    public String getcID() {
+    public String getPID() {
+		return pID;
+	}
+    public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getcID() {
 		return cID;
 	}
 	public void setcID(String cID) {
 		this.cID = cID;
 	}
-	public String getpID() {
-		return pID;
-	}
-	public void setId(String pID) {
-		this.pID = pID;
-	}
+	
 	public String getAmount() {
 		return amount;
 	}
